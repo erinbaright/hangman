@@ -15,7 +15,7 @@ function randomWord() {
 }
 
 function handleGuess(chosenLetter) {
-  console.log(chosenLetter)
+  // console.log(chosenLetter)
   guessed.indexOf(chosenLetter) === -1 ? guessed.push(chosenLetter) : null;
   // document.getElementById(chosenLetter).setAttribute('disabled', true);
 
@@ -23,10 +23,12 @@ function handleGuess(chosenLetter) {
 
   if (answer.indexOf(chosenLetter) >= 0) {
     guessedWord();
+    updateKeyboardUI(chosenLetter, "green")
     playerWins();
   } else if (answer.indexOf(chosenLetter) === -1) {
     mistakes++;
     updateMistakes();
+    updateKeyboardUI(chosenLetter, "red")
     playerLoses();
   }
 }
@@ -36,6 +38,20 @@ function guessedWord() {
 
   document.getElementById('wordSpotlight').innerHTML = wordStatus;
 }
+
+function updateKeyboardUI(chosenLetter, color) {
+  letters.forEach((letterDiv) => {
+    if (letterDiv.dataset.letter.toLowerCase() === chosenLetter.toLowerCase()) {
+      letterDiv.style.backgroundColor = color
+    }
+  })
+}
+
+function resetBoardUI(color) {
+  letters.forEach((letterDiv) => {
+      letterDiv.style.backgroundColor = color
+  })
+}
  
 function updateMistakes() {
   document.getElementById("mistakes").innerHTML = mistakes;
@@ -43,18 +59,20 @@ function updateMistakes() {
 
 function playerWins() {
   if (wordStatus === answer) {
-    document.getElementById('keyboard').innerHTML = 'You guessed it!';
+    document.getElementById('message').innerHTML = 'You guessed it!';
+    document.getElementById('keyboard').style.display = "none"
   }
 }
 
 function playerLoses() {
   if (mistakes === maxWrong) {
     document.getElementById('wordSpotlight').innerHTML = 'The city was ' + answer + '.';
-    document.getElementById('keyboard').innerHTML = "Better luck next time.";
+    document.getElementById('keyboard').style.display = "none"
+    document.getElementById('message').innerHTML = "Better luck next time!";
   }
 }
 
-// document.getElementById('maxWrong').innerText = maxWrong;
+// document.getElementById('mistakes').innerText = maxWrong;
 reset.addEventListener("click", resetButton)
 
 function resetButton() {
@@ -64,6 +82,9 @@ function resetButton() {
   randomWord();
   guessedWord();
   updateMistakes();
+  resetBoardUI("yellow")
+  document.getElementById('keyboard').style.display = "block";
+  document.getElementById('message').innerHTML = "";
   // generateButtons();
 }
 
@@ -85,6 +106,15 @@ let handleKeyDown = (e) => {
   }
 }
 
+// document.addEventListener("keydown", (e) => {
+//   let color = e.key
+//   Text.style.color = change[color]
+// })
+
+function keydownColor() {
+  letters.style.backgroundColor = "red";
+}
+
 let handleKeyUp = (e) => {
 
   let press = e.key
@@ -93,6 +123,7 @@ let handleKeyUp = (e) => {
     if (press === letters[i].dataset.letter) {
       letters[i].classList.remove('active');
     }
+    input.value = ""
   }
 }
 

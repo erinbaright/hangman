@@ -50,6 +50,7 @@ body {
 .letter:hover {
   background-color: green;
   color: yellow;
+  cursor: pointer;
 }
 
 .space-bar {
@@ -72,5 +73,6 @@ body {
 #reset:hover {
   background-color: green;
   color: yellow;
+  cursor: pointer;
   /* text-transform: uppercase; */
 }
