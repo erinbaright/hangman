@@ -30,7 +30,7 @@ body {
 }
 
 .input-form {
-  margin-top: 50px;
+  margin-top: 40px;
   text-align: center;
 }
 
@@ -53,14 +53,6 @@ body {
   cursor: pointer;
 }
 
-.space-bar {
-  display: inline-block;
-  padding: 12px 110px;
-  border: 1px solid #000;
-  text-transform: uppercase;
-  background-color: yellow;
-}
-
 #reset {
   background-color: yellow;
   border: 1px solid #000;
@@ -74,5 +66,7 @@ body {
   background-color: green;
   color: yellow;
   cursor: pointer;
+  transform: scale(1.2);
+  transition: all .2s ease-in-out;
   /* text-transform: uppercase; */
 }

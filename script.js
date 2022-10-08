@@ -106,11 +106,6 @@ let handleKeyDown = (e) => {
   }
 }
 
-// document.addEventListener("keydown", (e) => {
-//   let color = e.key
-//   Text.style.color = change[color]
-// })
-
 function keydownColor() {
   letters.style.backgroundColor = "red";
 }
