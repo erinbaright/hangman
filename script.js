@@ -1,7 +1,6 @@
 const input = document.querySelector('#input');
 const letters = document.querySelectorAll('.letter');
-
-const cityNames = ['raleigh', 'seattle', 'providence', 'poughkeepsie', 'kihei', 'phoenix', 'kenosha', 'vancouver', 'mobile', 'honolulu', 'fairbanks', 'charlotte', 'yonkers', 'burlington', 'hartford', 'morgantown', 'birmingham', 'chicago', 'dallas', 'asheville', 'baltimore', 'miami', 'havana', 'amarillo', 'albuquerque', 'denver', 'kingston', 'madison', 'helena', 'kissimmee', 'lincoln', 'schenectady', 'rochester', 'minneapolis', 'bismarck', 'spokane', 'tuscon', 'newark', 'montreal', 'augusta', 'tijuana', 'guadalajara', 'anchorage', 'cheyenne', 'bozeman', 'boise', 'tacoma', 'missoula', 'fresno', 'wichita']
+const cityNames = ['raleigh', 'boulder', 'seattle', 'providence', 'poughkeepsie', 'kihei', 'phoenix', 'milwaukee', 'vancouver', 'mobile', 'honolulu', 'fairbanks', 'charlotte', 'yonkers', 'burlington', 'hartford', 'morgantown', 'birmingham', 'chicago', 'dallas', 'asheville', 'baltimore', 'miami', 'havana', 'amarillo', 'albuquerque', 'denver', 'kingston', 'madison', 'helena', 'kissimmee', 'lincoln', 'schenectady', 'rochester', 'minneapolis', 'bismarck', 'spokane', 'tuscon', 'newark', 'montreal', 'augusta', 'tijuana', 'guadalajara', 'anchorage', 'cheyenne', 'bozeman', 'boise', 'tacoma', 'missoula', 'fresno', 'wichita']
 
 let answer = "";
 let maxWrong = 6;
@@ -10,16 +9,17 @@ let guessed = [];
 let wordStatus = null;
 const reset = document.querySelector('#reset');
 
-function randomWord() {
-  answer = cityNames[Math.floor(Math.random() * cityNames.length)];
+function shuffleCity() {
+  let index = Math.floor(Math.random() * cityNames.length)
+
+  answer = cityNames[index];
+  console.log(cityNames)
+  cityNames.splice(index, 1);
+  console.log(cityNames)
 }
 
 function handleGuess(chosenLetter) {
-  // console.log(chosenLetter)
   guessed.indexOf(chosenLetter) === -1 ? guessed.push(chosenLetter) : null;
-  // document.getElementById(chosenLetter).setAttribute('disabled', true);
-
-  // alert(answer);
 
   if (answer.indexOf(chosenLetter) >= 0) {
     guessedWord();
@@ -59,7 +59,7 @@ function updateMistakes() {
 
 function playerWins() {
   if (wordStatus === answer) {
-    document.getElementById('message').innerHTML = 'You guessed it!';
+    document.getElementById('message').innerHTML = 'You guessed it! 🎉';
     document.getElementById('keyboard').style.display = "none"
   }
 }
@@ -68,31 +68,28 @@ function playerLoses() {
   if (mistakes === maxWrong) {
     document.getElementById('wordSpotlight').innerHTML = 'The city was ' + answer + '.';
     document.getElementById('keyboard').style.display = "none"
-    document.getElementById('message').innerHTML = "Better luck next time!";
+    document.getElementById('message').innerHTML = "Better luck next time! 🤞";
   }
 }
 
-// document.getElementById('mistakes').innerText = maxWrong;
 reset.addEventListener("click", resetButton)
 
 function resetButton() {
   mistakes = 0
   guessed = [];
 
-  randomWord();
+  shuffleCity();
   guessedWord();
   updateMistakes();
   resetBoardUI("yellow")
   document.getElementById('keyboard').style.display = "block";
   document.getElementById('message').innerHTML = "";
-  // generateButtons();
 }
 
-randomWord();
+shuffleCity();
 guessedWord();
+resetBoardUI();
 
-
-// keyboard
 
 let handleKeyDown = (e) => {
 
