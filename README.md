@@ -1,4 +1,4 @@
-# Guess The City
+# Name The City
 
 ## Developed a front-end game to guess the name of North American cities.
 
