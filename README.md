@@ -1,11 +1,35 @@
-# Name The City
+<div align="center">
 
-## Developed a front-end game to guess the name of North American cities.
+# Guess The City
+
+</div>
+
+### A front-end, JavaScript game to guess the name of North American cities.
+
+<br>
+
+<img src="NameTheCity.png" alt="Screenshot of Name The City">
+
+<br>
 
 ### Key Features:
 
-- Randomized array of non-repeating cities cities
+- Randomized array of non-repeating cities
 - Keys change color when pressed down: red when the word does not contain the letter and green when it does.
+
+### Languages, Skills, & Methods:
+- Vanilla JavaScript, CSS3, HTML5
+- Object-Oriented Programming
+- Event Listeners
+- Array Data Structures
+
+
+
+<div align="center">
+
+## >> [Play the game!](https://guess-the-city-ebaright.netlify.app/) <<
+
+</div>
 
 ### References:
 
